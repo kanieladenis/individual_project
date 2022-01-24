@@ -11,29 +11,25 @@ from sklearn.model_selection import train_test_split
 # Scaler
 from sklearn.preprocessing import MinMaxScaler
 
-# Scaler
-from sklearn.preprocessing import MinMaxScaler
-
-# cluster method
-from sklearn.cluster import KMeans
-
 # Feature Engineering methods
 from sklearn.linear_model import LinearRegression
 from sklearn.feature_selection import SelectKBest, f_regression, RFE
 
-#import classification modeling reporting
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
+
 
 # Classification Modeling methods
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 
+#import classification modeling reporting
+from sklearn.metrics import classification_report
+
 
 
 def split(df):
     '''
+    This function splits data into the train, validate, and test set at portions: 56%, 24%, 20%, stratify on is_default 
     '''
     
     # This function splits data into the train, validate, and test set at portions: 56%, 24%, 20%, stratify on is_default
@@ -110,7 +106,7 @@ def scale(X_train, X_validate, X_test):
     This function scaled X_train, X_validate, and X_test with MinMax Scaler
     '''
     # Create the scale container
-    scaler = sklearn.preprocessing.MinMaxScaler()
+    scaler = MinMaxScaler()
 
     # Fit the scaler to the features
     scaler.fit(X_train)
@@ -170,6 +166,127 @@ def rfe(X_train_scaled, y_train):
 
 
 
+def dt_train(X_train_scaled, y_train):
+    '''
+    This function creates the Decision Tree container, fits it to X_train data, makes a prediction,
+    builds a classifcation report
+    '''
+
+    # Create Decision Tree Container
+    clf = DecisionTreeClassifier(max_depth=3, random_state=123)
+
+    # Fit Data to Container
+    clf = clf.fit(X_train_scaled, y_train)
+
+    # Create Prediction
+    y_pred_clf = clf.predict(X_train_scaled)
     
+    # Create Classification Report for Model 1 on train
+    print(classification_report(y_train, y_pred_clf))
+    
+    return clf
+
+
+def dt_validate(X_validate_scaled, y_validate, clf):
+    '''
+    This function makes a prediction on X_validate_scaled and build a classification report
+    '''
+    
+    y_pred_clf = clf.predict(X_validate_scaled)
+    
+    # Create classification report model 1 on validate
+    print(classification_report(y_validate, y_pred_clf))
+    
+    return
+
+
+def rf_train(X_train_scaled, y_train):
+    '''
+    This function makes the Random Forest Container, fits it to X_train_scaled, makes a prediction, 
+    then it builds a classification report
+    '''
+    
+    # Create Random Forest Classifier Container
+    rf = RandomForestClassifier(max_depth=3, random_state=123)
+
+    # Fit Train to Container
+    rf = rf.fit(X_train_scaled, y_train)
+
+    # Create Prediction 
+    y_pred_rf = rf.predict(X_train_scaled)
+    
+    # Create Classification Report for Model 2 on train
+    print(classification_report(y_train, y_pred_rf))
+    
+    return rf
+
+
+def rf_validate(X_validate_scaled, y_validate, rf):
+    '''
+    Uses randome fortest containter to predict on X_validate
+    '''
+    
+    # Create Prediction Series
+    y_pred_rf = rf.predict(X_validate_scaled)
+    
+    # Create Classification Report for Model 2 on validate
+    print(classification_report(y_validate, y_pred_rf))
+    
+    return
+
+
+def knn_train(X_train_scaled, y_train):
+    '''
+    This function creates the knn container, fits it to X_train, makes a prediction,
+    and builds a classification report
+    '''
+
+    # Create Decision Tree Classifier Algorithym Container
+    knn = KNeighborsClassifier(n_neighbors=3, weights='uniform')
+
+    # Fit Train Data to Container to make the model
+    knn = knn.fit(X_train_scaled, y_train)
+
+    # Create Prediction Series
+    y_pred_knn = knn.predict(X_train_scaled)
+    
+    # Create Classification Report for Model 3 train
+    print(classification_report(y_train, y_pred_knn))
+    
+    return knn
+
+
+def knn_validate(X_validate_scaled, y_validate, knn):
+    '''
+    This function make a prediction on X_validate_scaled and builds a classification report
+    '''
+        
+    # Create Prediction Series
+    y_pred_knn = knn.predict(X_validate_scaled)
+    
+    # Create Classification Report for Model 3 on validate
+    print(classification_report(y_validate, y_pred_knn))
+
+    return 
+
+
+def knn_test(X_test_scaled, y_test, knn):
+    '''
+    This function makes a knn prediction on test data and builds a report
+    '''
+
+    # Create Prediction Series
+    y_pred_knn = knn.predict(X_test_scaled)
+    
+    # Create classification report for model 3 on test data
+    print(classification_report(y_test, y_pred_knn))
+
+    return
+
+
+
+
+
+
     
     

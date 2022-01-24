@@ -161,6 +161,9 @@ def feature_engineering(df):
 
 
 def wrangle(df):
+    '''
+    This function funs all prepare fuctions
+    '''
     
     df = lowercase_rename(df)
     
