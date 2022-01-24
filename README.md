@@ -27,6 +27,7 @@ Provided in Repo
 
 1. Clone repo
 2. No credentials required
+3. Download to working folder 'SBAnational.csv' from https://www.kaggle.com/mirbektoktogaraev/should-this-loan-be-approved-or-denied
 3. Follow notebook
 
 
