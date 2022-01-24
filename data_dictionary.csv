@@ -1,0 +1,21 @@
+Variable name,Description of variable
+appv_date,Date SBA commitment issued
+Term,Loan term in months
+no_emp,Number of business employees
+new_exist,"1 = Existing business, 2 = New business"
+jobs_created,Number of jobs created
+jobs_retained,Number of jobs retained
+low_doc,"LowDoc Loan Program: Y = Yes, N = No. Allows limited support docs for loan approval."
+disbursement_date,Date Funds were Paid to the Business
+disbursement_gross,Amount Paid to the Business
+loan_status,"Loan status charged off = CHGOFF, Paid in full = PIF"
+default_amount,Amount of debt considered  unplayable
+appv_loan_amount,Gross amount of loan approved by bank
+sba_appv_amount,SBA's guaranteed amount of approved loan
+is_new,New Business is ‘1’
+sba_percent,Percentage of Approved Loan Amount Covered by SBA
+monthly_debt,Total Approved Loan Divided by the Number of Months in Loan Term
+jobs_count,Sum of Jobs Created and Jobs Retained
+is_default,Loans that defaulted are ‘1’
+is_naics_defaulter,NAICS that defaulted above average are ‘1’
+is_state_defaulter,States that had above average default percentage is ‘1’
